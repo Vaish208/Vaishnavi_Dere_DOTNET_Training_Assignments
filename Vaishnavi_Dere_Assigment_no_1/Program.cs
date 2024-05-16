@@ -23,7 +23,7 @@ namespace Vaishnavi_Dere_Assignment_no_1
 
                 if (!isNumber)
                 {
-                    Console.WriteLine("Invalid input. Please enter a number from above list.");
+                    Console.WriteLine("\nInvalid input. Please enter a number from above list.");
                     continue;
                 }
 
@@ -42,12 +42,12 @@ namespace Vaishnavi_Dere_Assignment_no_1
                         DeleteTask();
                         break;
                     case 5:
-                        Console.WriteLine("Exiting the application.");
-                        Console.WriteLine("Project By Vaishnavi Dere - Nashik");
+                        Console.WriteLine("\nExiting the application.");
+                        Console.WriteLine("\nProject By Vaishnavi Dere - Nashik");
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Invalid option. Please try again.");
+                        Console.WriteLine("\nInvalid option. Please try again.");
                         break;
                 }
             }
@@ -55,19 +55,19 @@ namespace Vaishnavi_Dere_Assignment_no_1
 
         static void CreateTask()
         {
-            Console.Write("Write the title of your task: ");
+            Console.Write("\nWrite the title of your task: ");
             string title = Console.ReadLine();
             Console.Write("Write the description of your task: ");
             string description = Console.ReadLine();
             tasks.Add(taskId++, new Task { Title = title, Description = description });
-            Console.WriteLine("Task created successfully.");
+            Console.WriteLine("\nTask created successfully.\n");
         }
 
         static void ReadTasks()
         {
             foreach (var task in tasks)
             {
-                Console.WriteLine($"Task ID: {task.Key}, Title: {task.Value.Title}, Description: {task.Value.Description}");
+                Console.WriteLine($"\nTask ID: {task.Key}, \nTitle: {task.Value.Title}, \nDescription: {task.Value.Description}\n");
             }
         }
 
@@ -93,17 +93,27 @@ namespace Vaishnavi_Dere_Assignment_no_1
 
             if (choice == 1)
             {
-                Console.Write("Enter the new title of the task: ");
+                Console.Write("\nEnter the new title of the task: ");
                 string newTitle = Console.ReadLine();
                 tasks[taskNumber].Title = newTitle;
-                Console.WriteLine("Task title updated successfully.");
+                Console.WriteLine("\nTask title updated successfully.\n");
+                Console.WriteLine("Here is your updated Task with updated Title");
+                foreach (var task in tasks)
+                {
+                    Console.WriteLine($"\nTask ID: {task.Key}, \nTitle: {task.Value.Title}, \nDescription: {task.Value.Description}\n");
+                }
             }
             else if (choice == 2)
             {
-                Console.Write("Enter the new description of the task: ");
+                Console.Write("\nEnter the new description of the task: ");
                 string newDescription = Console.ReadLine();
                 tasks[taskNumber].Description = newDescription;
-                Console.WriteLine("Task description updated successfully.");
+                Console.WriteLine("\nTask description updated successfully.\n");
+                Console.WriteLine("Here is your updated Task with updated Description");
+                foreach (var task in tasks)
+                {
+                    Console.WriteLine($"\nTask ID: {task.Key}, \nTitle: {task.Value.Title}, \nDescription: {task.Value.Description}\n");
+                }
             }
         }
 
@@ -119,7 +129,7 @@ namespace Vaishnavi_Dere_Assignment_no_1
             }
 
             tasks.Remove(taskNumber);
-            Console.WriteLine("Your Task deleted successfully.");
+            Console.WriteLine("Your Task deleted successfully.\n");
         }
     }
 
