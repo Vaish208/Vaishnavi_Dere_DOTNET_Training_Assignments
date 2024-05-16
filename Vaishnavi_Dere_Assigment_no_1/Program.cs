@@ -1,16 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace Vaishnavi_Dere_Assignment_no_1
 {
     internal class Program
     {
-        static Dictionary<int, string> tasks = new Dictionary<int, string>();
+        static Dictionary<int, Task> tasks = new Dictionary<int, Task>();
         static int taskId = 1;
 
         static void Main(string[] args)
         {
-
             while (true)
             {
                 Console.WriteLine("1. Create a task");
@@ -57,16 +56,18 @@ namespace Vaishnavi_Dere_Assignment_no_1
         static void CreateTask()
         {
             Console.Write("Write the title of your task: ");
-            string task = Console.ReadLine();
-            tasks.Add(taskId++, task);
-            Console.WriteLine("successful.");
+            string title = Console.ReadLine();
+            Console.Write("Write the description of your task: ");
+            string description = Console.ReadLine();
+            tasks.Add(taskId++, new Task { Title = title, Description = description });
+            Console.WriteLine("Task created successfully.");
         }
 
         static void ReadTasks()
         {
             foreach (var task in tasks)
             {
-                Console.WriteLine($"Task ID: {task.Key}, Title: {task.Value}");
+                Console.WriteLine($"Task ID: {task.Key}, Title: {task.Value.Title}, Description: {task.Value.Description}");
             }
         }
 
@@ -81,10 +82,29 @@ namespace Vaishnavi_Dere_Assignment_no_1
                 return;
             }
 
-            Console.Write("Enter the new title of the task: ");
-            string newTask = Console.ReadLine();
-            tasks[taskNumber] = newTask;
-            Console.WriteLine("Task ID updated successfully.");
+            Console.Write("Do you want to update the title (1) or description (2)?: ");
+            bool isChoiceNumber = int.TryParse(Console.ReadLine(), out int choice);
+
+            if (!isChoiceNumber || (choice != 1 && choice != 2))
+            {
+                Console.WriteLine("Invalid choice.");
+                return;
+            }
+
+            if (choice == 1)
+            {
+                Console.Write("Enter the new title of the task: ");
+                string newTitle = Console.ReadLine();
+                tasks[taskNumber].Title = newTitle;
+                Console.WriteLine("Task title updated successfully.");
+            }
+            else if (choice == 2)
+            {
+                Console.Write("Enter the new description of the task: ");
+                string newDescription = Console.ReadLine();
+                tasks[taskNumber].Description = newDescription;
+                Console.WriteLine("Task description updated successfully.");
+            }
         }
 
         static void DeleteTask()
@@ -101,5 +121,11 @@ namespace Vaishnavi_Dere_Assignment_no_1
             tasks.Remove(taskNumber);
             Console.WriteLine("Your Task deleted successfully.");
         }
+    }
+
+    class Task
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
     }
 }
